@@ -1,6 +1,6 @@
-# ControladoraFrontend
+# DescontroladaFrontend
 
-Trata-se de um CRUD de Catálogo de Produtos de uma varejista chamada Descontrolada®
+Trata-se de um CRUD de Catálogo de Produtos de uma varejista chamada Descontrolada®.
 O projeto contém o FrontEnd da aplicação, enquanto o BackEnd está no repositório DescontroladaAPI (https://github.com/onequeiroz/DescontroladaAPI)
 
 # Demanda
