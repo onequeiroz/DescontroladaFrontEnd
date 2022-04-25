@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="title">
+    <h1><b>{{ title }}</b></h1>
+  </div>
+
+  <!-- FORM -->
+  <form [formGroup]="form" class="was-validated">
+    <div class="box">
+      <!-- Name -->
+      <div>
+        <label for="name" class="form-label">{{labels.name }}</label>
+        <input type="text" class="form-control" minlength="3" maxlength="50"
+          formControlName="name" placeholder="Apple" id="name" required>
+        <div class="invalid-feedback">{{ labels.required }}</div>
+      </div>
+      <!-- Description -->
+      <div>
+        <label for="description" class="form-label">{{ labels.description }}</label>
+        <input type="text" class="form-control" minlength="3" maxlength="220"
+          formControlName="description" placeholder="The Apple is red" id="description" required>
+        <div class="invalid-feedback">{{ labels.required }}</div>
+      </div>
+      <!-- Sell Price -->
+      <div>
+        <label for="sellPrice" class="form-label">{{ labels.sellPrice }}</label>
+        <input type="number" class="form-control" formControlName="sellPrice" placeholder="10" id="sellPrice" min="0" max="999999" required>
+        <div class="invalid-feedback">{{ validationNumberField('sellPrice') }}</div>
+      </div>
+      <!-- Quantity -->
+      <div>
+        <label for="quantity" class="form-label">{{ labels.quantity }}</label>
+        <input type="number" class="form-control" formControlName="quantity" placeholder="1" id="quantity" min="0" max="999999" required>
+        <div class="invalid-feedback">{{ validationNumberField('quantity') }}</div>
+      </div>
+      <!-- Register Date -->
+      <div>
+        <label for="registerDate" class="form-label">{{ labels.registerDate }}</label>
+        <input type="date" class="form-control" formControlName="registerDate" id="registerDate" required>
+        <div class="invalid-feedback">{{ labels.required }}</div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="box">
+      <!-- Type -->
+      <div>
+        <label for="isOrganic" class="form-label">{{ labels.isOrganic }}</label>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="isOrganic" name="isOrganic">
+            <mat-option *ngFor="let type of typeOptionsList" [value]="type.value">
+              {{ type.desc }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="box-reverse">
+      <div>
+        <button type="submit" class="btn btn-primary" (click)="save()"
+          [disabled]="form.invalid">{{ labels.save }}</button>
+      </div>
+      <div *ngIf="isEdit" class="margin-right">
+        <button type="submit" class="btn btn-primary" (click)="deleteRegister()">{{ labels.delete }}</button>
+      </div>
+    </div>
+  </form>
+</div>

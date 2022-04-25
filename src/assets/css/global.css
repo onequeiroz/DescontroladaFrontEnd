@@ -1,0 +1,47 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Arial', Times, serif;
+}
+
+.container-fluid {
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar a {
+  margin-right: 3rem;
+}
+
+.title h1 {
+  font-size: 32px;
+  color: #6c757d;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.box-reverse {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+}
+
+.margin-right {
+  margin-right: 1rem;
+}

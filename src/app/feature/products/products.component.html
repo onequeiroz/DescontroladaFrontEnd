@@ -1,0 +1,99 @@
+<div class="container-fluid">
+  <div class="title">
+    <h1><b>{{ labels.title }}</b></h1>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="box">
+      <!-- Name -->
+      <div>
+        <label for="name" class="form-label">{{labels.name }}</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Apple" id="name" maxlength="50">
+      </div>
+      <!-- Description -->
+      <div>
+        <label for="description" class="form-label">{{ labels.description }}</label>
+        <input type="text" class="form-control" formControlName="description" placeholder="The Apple is red" id="description" maxlength="220">
+      </div>
+      <!-- Sell Price -->
+      <div>
+        <label for="sellPrice" class="form-label">{{ labels.sellPrice }}</label>
+        <input type="number" class="form-control" formControlName="sellPrice" placeholder="10" id="sellPrice">
+      </div>
+      <!-- Quantity -->
+      <div>
+        <label for="quantity" class="form-label">{{ labels.quantity }}</label>
+        <input type="number" class="form-control" formControlName="quantity" placeholder="1" id="quantity">
+      </div>
+      <!-- Register Date -->
+      <div>
+        <label for="registerDate" class="form-label">{{ labels.registerDate }}</label>
+        <input type="date" class="form-control" formControlName="registerDate" id="registerDate">
+      </div>
+    </div>
+
+    <br>
+
+    <div class="box">
+      <!-- Type -->
+      <div>
+        <label for="isOrganic" class="form-label">{{ labels.isOrganic }}</label>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="isOrganic" name="isOrganic">
+            <mat-option *ngFor="let type of typeOptionsList" [value]="type.value">
+              {{ type.desc }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="box-reverse">
+      <div>
+        <button type="submit" class="btn btn-primary" (click)="get()">{{ labels.search }}</button>
+      </div>
+      <div class="margin-right">
+        <button type="submit" class="btn btn-primary" (click)="clean()">{{ labels.clean }}</button>
+      </div>
+      <div class="margin-right">
+        <button type="submit" class="btn btn-primary" (click)="newRegister()">{{ labels.register }}</button>
+      </div>
+    </div>
+  </form>
+
+  <br>
+
+  <!-- TABLE -->
+  <div class="row card">
+    <div *ngIf="listModel !== undefined && (listModel || []).length > 0" class="data-table card-body">
+      <table datatable [dtOptions]="dtOptions" class="table-config table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>{{ labels.name }}</th>
+            <th>{{ labels.description }}</th>
+            <th>{{ labels.sellPrice }}</th>
+            <th>{{ labels.quantity }}</th>
+            <th>{{ labels.registerDate }}</th>
+            <th>{{ labels.isOrganic }}</th>
+            <th>{{ labels.edit }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listModel">
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.sellPrice }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ dateConfig(item.registerDateString) }}</td>
+            <td>{{ item.isOrganic }}</td>
+            <td>
+              <a (click)=edit(item)>
+                <i class="material-icons">edit</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
